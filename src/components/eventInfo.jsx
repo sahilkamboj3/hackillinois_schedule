@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../static/EventInfo.css";
 import {
   faTasks,
@@ -51,7 +51,7 @@ const EventInfo = ({ event }) => {
     let hour;
 
     // getting AM or PM
-    const am_pm = militaryHours <= 12 ? "AM" : "PM";
+    const am_pm = militaryHours < 12 ? "AM" : "PM";
 
     // converting hours
     if (militaryHours >= 0 && militaryHours <= 12) {
@@ -65,21 +65,31 @@ const EventInfo = ({ event }) => {
     return `${hour}:${minutes} ${am_pm}`;
   };
 
+  // getting the start index of the link in the description
   const getHTTPIdx = (description) => {
     return description.indexOf("http");
   };
 
   return (
     <div key={event.id} className="event">
+      {/* if start and end time are the same, display both, else just one */}
       <h1 className="event-title">{event.name}</h1>
-      <h3 className="time">
-        {retrieveDayDateYearMonth(event.startTime)}
-        {" - "}
-        {retrieveDayTime(event.startTime)}
-        {" : "}
-        {retrieveDayTime(event.endTime)}
-      </h3>
-
+      {event.startTime != event.endTime ? (
+        <h3 className="time">
+          {retrieveDayDateYearMonth(event.startTime)}
+          {" - "}
+          {retrieveDayTime(event.startTime)}
+          {" : "}
+          {retrieveDayTime(event.endTime)}
+        </h3>
+      ) : (
+        <h3 className="time">
+          {retrieveDayDateYearMonth(event.startTime)}
+          {" - "}
+          {retrieveDayTime(event.startTime)}
+        </h3>
+      )}
+      {/* a icon for each event type */}
       {event.eventType == "WORKSHOP" ? (
         <div>
           <FontAwesomeIcon icon={faTasks} className="icon" /> {event.eventType}
@@ -107,6 +117,8 @@ const EventInfo = ({ event }) => {
       ) : (
         <p>{event.eventType}</p>
       )}
+
+      {/* separate the event link for the other parts of the description, if possible */}
       {getHTTPIdx(event.description) == -1 ? (
         <h5 className="description">{event.description}</h5>
       ) : (

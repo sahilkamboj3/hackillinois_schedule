@@ -1,7 +1,4 @@
 .event {
-  /* background-color: #ffcccb; */
-  /* background-color: #95c4ff; */
-
   border-radius: 10px;
   transition: 0.5s;
   margin-left: auto;
@@ -12,9 +9,6 @@
   margin-bottom: 5px;
 
   border: black 5px solid;
-  /* -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); */
 }
 
 .event-title {

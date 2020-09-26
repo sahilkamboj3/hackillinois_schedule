@@ -3,15 +3,17 @@ import classnames from "classnames";
 import "../static/Nav.css";
 
 const Nav = () => {
+  // toggle for the nav hamburger
   const [toggle, setToggle] = useState(false);
 
+  // changes the toggle variables
   const handleToggle = () => {
     setToggle(!toggle);
   };
 
   return (
     <div className="nav_wrapper">
-      {/* for mobile */}
+      {/* for mobile hamburger nav */}
       <div className="burger" onClick={handleToggle}>
         <div className="menu">
           <div className="bar"></div>
@@ -23,12 +25,13 @@ const Nav = () => {
       <div
         className={classnames({
           ["mobile-nav"]: true,
-          ["mobile-nav-hidden"]: toggle,
+          ["mobile-nav-hidden"]: !toggle,
         })}
       >
         <ul className="mobile-ul">
           <img
             src={require("../images/transparent_logo.png")}
+            alt="HackIllinois Logo"
             className="mobile-nav-logo"
           />
           <li className="mobile-li">Maps</li>
@@ -44,6 +47,7 @@ const Nav = () => {
         <a href="/">
           <img
             src={require("../images/transparent_logo.png")}
+            alt="HackIllinois Logo"
             className="logo"
           />
         </a>
